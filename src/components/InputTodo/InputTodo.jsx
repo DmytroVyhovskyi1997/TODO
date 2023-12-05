@@ -1,4 +1,3 @@
-
 import { useDispatch, useSelector } from "react-redux";
 import { nanoid } from "nanoid";
 import { addTodos } from "../../redux/operations";
@@ -10,7 +9,6 @@ const InputTodo = () => {
   const dispatch = useDispatch();
   const [inputText, setInputText] = useState("");
   const todos = useSelector(getTodos);
-
 
   const handleChange = (event) => {
     const { value } = event.target;
@@ -46,10 +44,3 @@ const InputTodo = () => {
 };
 
 export default InputTodo;
-
-
-
-
-
-
-

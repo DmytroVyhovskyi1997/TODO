@@ -1,6 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
-import { fetchTodos, addTodos, deleteTodos, updateTodos } from './operations';
+import { fetchTodos, addTodos, deleteTodos, updateTodos } from "./operations";
 
 import {
   handlePending,
@@ -9,15 +9,15 @@ import {
   handlePushFulfilled,
   handleDeleteFulfilled,
   handleUpdateFulfilled,
-} from './initial';
+} from "./initial";
 
 const initialStateTodos = { items: [], isLoading: false, error: null };
 
 export const todosSlice = createSlice({
-  name: 'todos',
+  name: "todos",
   initialState: initialStateTodos,
 
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
       .addCase(fetchTodos.pending, handlePending)
       .addCase(fetchTodos.fulfilled, handleFulfilled)
@@ -32,7 +32,7 @@ export const todosSlice = createSlice({
       .addCase(deleteTodos.rejected, handleRejected)
 
       .addCase(updateTodos.pending, handlePending)
-      .addCase(updateTodos.fulfilled,handleUpdateFulfilled)
+      .addCase(updateTodos.fulfilled, handleUpdateFulfilled)
       .addCase(updateTodos.rejected, handleRejected);
   },
 });

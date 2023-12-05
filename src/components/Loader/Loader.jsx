@@ -1,5 +1,5 @@
-import { ProgressBar } from 'react-loader-spinner';
-import { Load } from './Loader.styled';
+import { ProgressBar } from "react-loader-spinner";
+import { Load } from "./Loader.styled";
 
 const Loader = () => (
   <Load>
@@ -7,7 +7,7 @@ const Loader = () => (
       visible={true}
       height={100}
       width={100}
-      type="TailSpin" 
+      type="TailSpin"
       color="#F4442E"
     />
   </Load>

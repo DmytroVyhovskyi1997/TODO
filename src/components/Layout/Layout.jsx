@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
-import { Box, BoxContainer, Container, Link, BoxMain } from "./Layout.styled";
+import { Box, BoxContainer, Container, Link} from "./Layout.styled";
+
 
 const Layout = () => {
   return (
@@ -12,9 +13,9 @@ const Layout = () => {
              <Link to="todo">Todo List</Link>
            </nav>
          </Box>
-         <BoxMain>
+         <main>
            <Outlet />
-         </BoxMain>
+         </main>
          </BoxContainer>
     </Container>
   );

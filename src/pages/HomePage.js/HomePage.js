@@ -1,8 +1,10 @@
+import { Title, Paragraph } from "./HomePage.styled";
+
 const HomePage = () => {
     return (
       <div>
-        <h1>Welcome to ToDo App</h1>
-        <p>Choose an option from the navigation.</p>
+        <Title>Welcome to ToDo App</Title>
+        <Paragraph>Choose an option from the navigation.</Paragraph>
       </div>
     );
   };

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Box, BoxTitle, ButtonDelete, ButtonEdit, BokIcon } from "./AddTodo.styled";
+import { Box, BoxTitle, ButtonDelete, ButtonEdit, BokIcon, BoxMain  } from "./AddTodo.styled";
 import { getError, getIsLoading, getTodos } from "../../redux/selectors";
 import { fetchTodos, deleteTodos, updateTodos } from "../../redux/operations";
 import InputTodo from "../../components/InputTodo/InputTodo";
@@ -27,7 +27,7 @@ const AddTodo = () => {
   const handleSave = () => {
     dispatch(updateTodos({ id: editingId, title: editedTitle }));
     setEditingId(null);
-    setEditedTitle(''); 
+    setEditedTitle('');
   };
   const handleDeleteTodo = userId => {
     dispatch(deleteTodos(userId));
@@ -35,7 +35,8 @@ const AddTodo = () => {
 
   return (
     <>
-      {error && <p>Error: {error}</p>}
+    <BoxMain>
+    {error && <p>Error: {error}</p>}
       {isLoading && <Loader />}
       <InputTodo />
       <Box>
@@ -61,6 +62,8 @@ const AddTodo = () => {
           </BoxTitle>
         ))}
       </Box>
+    </BoxMain>
+    
     </>
   );
 };

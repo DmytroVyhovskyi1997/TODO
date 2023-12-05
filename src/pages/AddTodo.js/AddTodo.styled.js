@@ -34,3 +34,8 @@ export const BokIcon = styled(FaAddressBook)`
 color:#444141;
 margin-right:5px;
 `
+
+export const BoxMain = styled.main`
+border-radius: 10px;
+    border: 3px solid #48637f;
+`

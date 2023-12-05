@@ -42,7 +42,3 @@ flex-direction: column;
 align-items: center;
 `
 
-export const BoxMain = styled.main`
-border-radius: 10px;
-    border: 3px solid #48637f;
-`

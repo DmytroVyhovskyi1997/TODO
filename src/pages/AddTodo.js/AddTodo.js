@@ -11,13 +11,13 @@ const AddTodo = () => {
   const todos = useSelector(getTodos);
   const isLoading = useSelector(getIsLoading);
   const error = useSelector(getError);
+  const [editingId, setEditingId] = useState(null);
+  const [editedTitle, setEditedTitle] = useState('');
 
   useEffect(() => {
     dispatch(fetchTodos());
   }, [dispatch]);
 
-  const [editingId, setEditingId] = useState(null);
-  const [editedTitle, setEditedTitle] = useState('');
 
   const handleEdit = (id, title) => {
     setEditingId(id);

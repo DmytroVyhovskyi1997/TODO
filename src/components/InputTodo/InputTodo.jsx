@@ -1,21 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { nanoid } from "nanoid";
+
 import { useDispatch, useSelector } from "react-redux";
+import { nanoid } from "nanoid";
 import { addTodos } from "../../redux/operations";
 import { getTodos } from "../../redux/selectors";
 import { BoxForm, Button, Input } from "./InputTodo.styled";
+import { useState } from "react";
 
 const InputTodo = () => {
   const dispatch = useDispatch();
   const [inputText, setInputText] = useState("");
   const todos = useSelector(getTodos);
 
-  useEffect(() => {
-    const storedInputText = localStorage.getItem("inputText");
-    if (storedInputText) {
-      setInputText(storedInputText);
-    }
-  }, []);
 
   const handleChange = (event) => {
     const { value } = event.target;
@@ -51,5 +46,10 @@ const InputTodo = () => {
 };
 
 export default InputTodo;
+
+
+
+
+
 
 

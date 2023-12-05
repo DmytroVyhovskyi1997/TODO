@@ -8,6 +8,7 @@ import {
   handleFulfilled,
   handlePushFulfilled,
   handleDeleteFulfilled,
+  handleUpdateFulfilled,
 } from './initial';
 
 const initialStateTodos = { items: [], isLoading: false, error: null };
@@ -31,7 +32,7 @@ export const todosSlice = createSlice({
       .addCase(deleteTodos.rejected, handleRejected)
 
       .addCase(updateTodos.pending, handlePending)
-      .addCase(updateTodos.fulfilled, handleDeleteFulfilled)
+      .addCase(updateTodos.fulfilled,handleUpdateFulfilled)
       .addCase(updateTodos.rejected, handleRejected);
   },
 });

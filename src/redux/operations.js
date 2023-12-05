@@ -48,7 +48,7 @@ export const updateTodos = createAsyncThunk(
   async ({ id, title }, thunkAPI) => {
     try {
       const res = await axios.put(`/todos/${id}`, { title });
-      return res.data;
+      return { id, title };  // Return both id and title
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);
     }

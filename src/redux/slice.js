@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { fetchTodos, addTodos, deleteTodos } from './operations';
+import { fetchTodos, addTodos, deleteTodos, updateTodos } from './operations';
 
 import {
   handlePending,
@@ -28,6 +28,10 @@ export const todosSlice = createSlice({
 
       .addCase(deleteTodos.pending, handlePending)
       .addCase(deleteTodos.fulfilled, handleDeleteFulfilled)
-      .addCase(deleteTodos.rejected, handleRejected);
+      .addCase(deleteTodos.rejected, handleRejected)
+
+      .addCase(updateTodos.pending, handlePending)
+      .addCase(updateTodos.fulfilled, handleDeleteFulfilled)
+      .addCase(updateTodos.rejected, handleRejected);
   },
 });

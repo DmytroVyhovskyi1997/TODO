@@ -1,3 +1,5 @@
+
+
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -18,26 +20,37 @@ export const fetchTodos = createAsyncThunk(
 );
 
 export const addTodos = createAsyncThunk(
-    'todos/addTodos',
-    async (todo, thunkAPI) => {
-      try {
-        const res = await axios.post('/todos', todo);
-        return res.data;
-      } catch (err) {
-        return thunkAPI.rejectWithValue(err.message);
-      }
+  'todos/addTodos',
+  async (todo, thunkAPI) => {
+    try {
+      const res = await axios.post('/todos', todo);
+      return res.data;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.message);
     }
-  );
-  
+  }
+);
 
-  export const deleteTodos = createAsyncThunk(
-    'todos/deleteTodos',
-    async (todoId, thunkAPI) => {
-      try {
-        const res = await axios.delete(`/todos/${todoId}`);
-        return res.data;
-      } catch (err) {
-        return thunkAPI.rejectWithValue(err.message);
-      }
+export const deleteTodos = createAsyncThunk(
+  'todos/deleteTodos',
+  async (id, thunkAPI) => {
+    try {
+      await axios.delete(`/todos/${id}`);
+      return id; 
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.message);
     }
-  );
+  }
+);
+
+export const updateTodos = createAsyncThunk(
+  'todos/updateTodos',
+  async ({ id, title }, thunkAPI) => {
+    try {
+      const res = await axios.put(`/todos/${id}`, { title });
+      return res.data;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.message);
+    }
+  }
+);

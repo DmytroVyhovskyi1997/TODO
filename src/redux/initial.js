@@ -21,9 +21,12 @@ export const handlePending = state => {
   export const handleDeleteFulfilled = (state, { payload }) => {
     state.isLoading = false;
     state.error = null;
-    const index = state.items.findIndex(
-        todo => todo.id === payload.id
-      );
-      state.items.splice(index, 1);
+    state.items = state.items.filter(todo => todo.id !== payload);
+  };
+  export const handleUpdateFulfilled = (state, { payload }) => {
+    state.isLoading = false;
+    state.error = null;
+    const index = state.items.findIndex((todo) => todo.id === payload.id);
+    state.items[index].title = payload.title;
   };
   

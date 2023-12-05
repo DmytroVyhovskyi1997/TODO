@@ -1,50 +1,63 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Box, BoxTitle, ButtonDelete } from "./AddTodo.styled";
-import { getError, getFilter, getIsLoading, getTodos } from "../../redux/selectors";
-import { fetchTodos, deleteTodos } from "../../redux/operations";
+import { Box, BoxTitle, ButtonDelete, ButtonEdit, BokIcon } from "./AddTodo.styled";
+import { getError, getIsLoading, getTodos } from "../../redux/selectors";
+import { fetchTodos, deleteTodos, updateTodos } from "../../redux/operations";
 import InputTodo from "../../components/InputTodo/InputTodo";
-import { Loader } from "../../components/Loader/Loader";
+import Loader from "../../components/Loader/Loader";
 
 const AddTodo = () => {
   const dispatch = useDispatch();
   const todos = useSelector(getTodos);
   const isLoading = useSelector(getIsLoading);
   const error = useSelector(getError);
-  const filter = useSelector(getFilter);
 
   useEffect(() => {
     dispatch(fetchTodos());
   }, [dispatch]);
 
+  const [editingId, setEditingId] = useState(null);
+  const [editedTitle, setEditedTitle] = useState('');
 
-  const findTodos = () => {
-    const normalizedFilter = filter ? filter.toLowerCase() : '';
-
-    if (!todos) {
-      return [];
-    }
-
-    return todos.filter(todo =>
-      todo.title.toLowerCase().includes(normalizedFilter)
-    );
+  const handleEdit = (id, title) => {
+    setEditingId(id);
+    setEditedTitle(title);
   };
-  const filteredContacts = findTodos();
-  return (
-    <> 
-    {isLoading && <Loader/>}
 
+  const handleSave = () => {
+    dispatch(updateTodos({ id: editingId, title: editedTitle }));
+    setEditingId(null);
+    setEditedTitle(''); 
+  };
+  const handleDeleteTodo = userId => {
+    dispatch(deleteTodos(userId));
+  };
+
+  return (
+    <>
       {error && <p>Error: {error}</p>}
+      {isLoading && <Loader />}
       <InputTodo />
       <Box>
-        {filteredContacts.map(({ id, title }) => (
+        {todos.map(({ id, title }) => (
           <BoxTitle key={id}>
-            {title}
-            <ButtonDelete
-              onClick={() => 
-                dispatch(deleteTodos(id))
-              }
-            />
+            <BokIcon/>
+            {editingId === id ? (
+              <>
+                <input
+                  type="text"
+                  value={editedTitle}
+                  onChange={(e) => setEditedTitle(e.target.value)}
+                />
+                <ButtonEdit onClick={handleSave}>Save</ButtonEdit>
+              </>
+            ) : (
+              <>
+                {title}
+                <ButtonDelete onClick={() =>handleDeleteTodo(id)} />
+                <ButtonEdit onClick={() => handleEdit(id, title)}>Edit</ButtonEdit>
+              </>
+            )}
           </BoxTitle>
         ))}
       </Box>
@@ -53,3 +66,9 @@ const AddTodo = () => {
 };
 
 export default AddTodo;
+
+
+
+
+
+
